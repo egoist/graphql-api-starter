@@ -64,7 +64,7 @@ export default class AuthResolver {
     if (stripeEnabled) {
       const customer = await stripe.customers.create({
         name: args.name,
-        description: `App: Trackbee, Name: ${args.name}`,
+        description: `Name: ${args.name}`,
         email: args.email,
       })
       user.customerId = customer.id
