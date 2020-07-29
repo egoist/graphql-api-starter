@@ -9,7 +9,6 @@ import {
 import { hash, compare } from 'bcryptjs'
 import { getUserRepo } from '../database/connection'
 import { generateToken } from '../lib/jwt'
-import { stripe, stripeEnabled } from '../lib/stripe'
 import { ApolloError } from 'apollo-server-express'
 
 @ArgsType()
@@ -41,7 +40,7 @@ class AuthPayload {
 
 @Resolver()
 export default class AuthResolver {
-  @Mutation(returns => AuthPayload)
+  @Mutation((returns) => AuthPayload)
   async signup(@Args() args: SignupArgs): Promise<AuthPayload> {
     const userRepo = await getUserRepo()
 
@@ -61,14 +60,6 @@ export default class AuthResolver {
       email: args.email,
       passwordHash: await hash(args.password, 8),
     })
-    if (stripeEnabled) {
-      const customer = await stripe.customers.create({
-        name: args.name,
-        description: `Name: ${args.name}`,
-        email: args.email,
-      })
-      user.customerId = customer.id
-    }
 
     await userRepo.save(user)
     const token = generateToken(user.id)
@@ -77,7 +68,7 @@ export default class AuthResolver {
     }
   }
 
-  @Mutation(returns => AuthPayload)
+  @Mutation((returns) => AuthPayload)
   async login(@Args() args: LoginArgs): Promise<AuthPayload> {
     const userRepo = await getUserRepo()
     const user = await userRepo.findOne({
@@ -103,7 +94,7 @@ export default class AuthResolver {
     }
   }
 
-  @Mutation(returns => Boolean)
+  @Mutation((returns) => Boolean)
   resetPassword() {
     throw new Error(`Not implemented yet`)
   }

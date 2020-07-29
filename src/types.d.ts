@@ -3,7 +3,6 @@ declare namespace NodeJS {
     NODE_ENV: 'production' | 'development'
     PORT: string
     JWT_SECRET: string
-    STRIPE_PRIVATE_KEY: string
   }
 }
 

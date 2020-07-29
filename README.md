@@ -7,7 +7,7 @@
 - GraphQL framework: [Apollo GraphQL](https://www.apollographql.com/docs/apollo-server/)
 - Writting GraphQL resolvers in `ES Class` and `Decorators`: [Type GraphQL](https://typegraphql.com/)
 - Database ORM: [TypeORM](https://typeorm.io/)
-- Payment integration: [Stripe](https://stripe.com/) (Optional)
+- Payment integration: [Paddle](https://paddle.com/) (TODO)
 
 ## Getting started
 

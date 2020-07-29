@@ -11,24 +11,24 @@
     "g:migration": "yarn build && typeorm migration:generate"
   },
   "dependencies": {
-    "apollo-server-express": "^2.11.0",
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "graphql": "^14.6.0",
-    "helmet": "^3.21.3",
-    "jsonwebtoken": "^8.5.1",
-    "pg": "^7.18.2",
-    "stripe": "^8.38.0",
-    "type-graphql": "^0.17.6",
-    "typeorm": "^0.2.24"
+    "apollo-server-express": "2.16.1",
+    "bcryptjs": "2.4.3",
+    "body-parser": "1.19.0",
+    "class-validator": "0.12.2",
+    "dotenv": "8.2.0",
+    "express": "4.17.1",
+    "graphql": "15.3.0",
+    "helmet": "3.23.3",
+    "jsonwebtoken": "8.5.1",
+    "pg": "8.3.0",
+    "type-graphql": "1.0.0-rc.3",
+    "typeorm": "0.2.25"
   },
   "devDependencies": {
-    "@types/bcryptjs": "^2.4.2",
-    "@types/helmet": "^0.0.45",
-    "@types/jsonwebtoken": "^8.3.8",
-    "tsc-watch": "^4.2.3",
-    "typescript": "^3.8.3"
+    "@types/bcryptjs": "2.4.2",
+    "@types/helmet": "0.0.47",
+    "@types/jsonwebtoken": "8.5.0",
+    "tsc-watch": "4.2.9",
+    "typescript": "3.9.7"
   }
 }
