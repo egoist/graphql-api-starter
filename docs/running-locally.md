@@ -14,6 +14,9 @@ cp .env.example .env
 # Run psql
 > psql
 
+# Change the password of user `postgres` to the one in .env file
+> \password
+
 # Create a database (you can change it in .env file)
 > create database mydb;
 ```
