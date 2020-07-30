@@ -7,8 +7,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "sh scripts/dev.sh",
-    "build": "tsc -p tsconfig.build.json",
-    "migration.g": "yarn build && typeorm migration:generate"
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "migration.g": "yarn build && typeorm migration:generate",
+    "migration.run": "yarn build && typeorm migration:run"
   },
   "husky": {
     "hooks": {

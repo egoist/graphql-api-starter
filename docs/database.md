@@ -8,11 +8,10 @@ We use [TypeORM](https://typeorm.io/) to manage database.
 
 ## Creating a migration from entity changes
 
-We use TypeORM to create migration, here we also provide a shorthand command to invoke TypeORM. 
+We use TypeORM to create migration, here we also provide a shorthand command to invoke TypeORM.
 
 After updating, adding or deleting an entity, run following command to generate a migration automatically:
 
 ```bash
-yarn g:migration -n MigrationName
+yarn migration.g -n MigrationName
 ```
-

@@ -14,7 +14,7 @@ import { getUserRepo } from '../database/connection'
 
 @ObjectType()
 class CurrentUser {
-  @Field(type => ID)
+  @Field((type) => ID)
   id: string
 
   @Field()
@@ -22,9 +22,6 @@ class CurrentUser {
 
   @Field()
   name: string
-
-  @Field({ nullable: true })
-  customerId?: string
 }
 
 @ArgsType()
@@ -38,17 +35,17 @@ class UpdateProfileArgs {
 
 @Resolver()
 export class CurrentUserResolver {
-  @Query(returns => CurrentUser)
+  @Query((returns) => CurrentUser)
   async currentUser(@GqlContext() context: Context) {
     const { userId } = await requireAuth(context.request)
     const userRepo = await getUserRepo()
     return userRepo.findOne(userId)
   }
 
-  @Mutation(returns => CurrentUser)
+  @Mutation((returns) => CurrentUser)
   async updateProfile(
     @Args() args: UpdateProfileArgs,
-    @GqlContext() ctx: Context
+    @GqlContext() ctx: Context,
   ) {
     const { userId } = await requireAuth(ctx.request)
     const userRepo = await getUserRepo()

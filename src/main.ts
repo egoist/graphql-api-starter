@@ -13,7 +13,7 @@ async function main() {
   server.use(
     helmet({
       frameguard: false,
-    })
+    }),
   )
 
   server.use(bodyParser.urlencoded({ extended: false }))
@@ -51,10 +51,12 @@ async function main() {
     console.log(`Server listening on http://localhost:${PORT}`)
   })
 
-  const connection = await getConnection()
-  await connection.runMigrations({
-    transaction: 'all',
-  })
+  if (process.env.NODE_ENV === 'production') {
+    const connection = await getConnection()
+    await connection.runMigrations({
+      transaction: 'all',
+    })
+  }
 }
 
 main().catch((err) => {
