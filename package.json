@@ -10,6 +10,16 @@
     "build": "tsc -p tsconfig.build.json",
     "migration.g": "yarn build && typeorm migration:generate"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,ts,md}": [
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "apollo-server-express": "2.16.1",
     "bcryptjs": "2.4.3",
@@ -37,6 +47,9 @@
     "@types/passport": "^1.0.4",
     "@types/passport-github": "^1.1.5",
     "@types/passport-google-oauth": "^1.0.41",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
     "tsc-watch": "4.2.9",
     "typescript": "3.9.7"
   }
