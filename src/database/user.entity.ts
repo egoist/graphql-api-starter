@@ -1,14 +1,14 @@
 import {
   Entity,
-  PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  PrimaryColumn,
 } from 'typeorm'
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryColumn()
   id: string
 
   @CreateDateColumn()
@@ -20,12 +20,18 @@ export class User {
   @Column()
   email: string
 
-  @Column({ nullable: true })
-  passwordHash?: string
-
   /**
-   * User's full name
+   * User's display name
    */
   @Column()
   name: string
+
+  /**
+   * Auth provider, like `github` or `google`
+   */
+  @Column()
+  provider: string
+
+  @Column()
+  providerId: string
 }

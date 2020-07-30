@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "sh scripts/dev.sh",
     "build": "tsc -p tsconfig.build.json",
-    "g:migration": "yarn build && typeorm migration:generate"
+    "migration.g": "yarn build && typeorm migration:generate"
   },
   "dependencies": {
     "apollo-server-express": "2.16.1",
@@ -16,18 +16,27 @@
     "body-parser": "1.19.0",
     "class-validator": "0.12.2",
     "dotenv": "8.2.0",
+    "dotenv-expand": "^5.1.0",
     "express": "4.17.1",
     "graphql": "15.3.0",
     "helmet": "3.23.3",
     "jsonwebtoken": "8.5.1",
+    "nanoid": "^3.1.12",
+    "passport": "^0.4.1",
+    "passport-github": "^1.1.0",
+    "passport-google-oauth": "^2.0.0",
     "pg": "8.3.0",
     "type-graphql": "1.0.0-rc.3",
     "typeorm": "0.2.25"
   },
   "devDependencies": {
+    "@egoist/prettier-config": "^0.1.0",
     "@types/bcryptjs": "2.4.2",
     "@types/helmet": "0.0.47",
     "@types/jsonwebtoken": "8.5.0",
+    "@types/passport": "^1.0.4",
+    "@types/passport-github": "^1.1.5",
+    "@types/passport-google-oauth": "^1.0.41",
     "tsc-watch": "4.2.9",
     "typescript": "3.9.7"
   }

@@ -1,5 +1,5 @@
-import 'dotenv/config'
-import {join} from 'path'
+import '../scripts/load-env'
+import { join } from 'path'
 import express from 'express'
 import { ApolloServer } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
@@ -13,7 +13,7 @@ async function main() {
   server.use(
     helmet({
       frameguard: false,
-    }),
+    })
   )
 
   server.use(bodyParser.urlencoded({ extended: false }))
@@ -21,7 +21,7 @@ async function main() {
 
   server.get('/', (req, res) => {
     res.send({
-      date: new Date()
+      date: new Date(),
     })
   })
 
@@ -42,9 +42,8 @@ async function main() {
   })
   apolloServer.applyMiddleware({ app: server, path: '/graphql' })
 
-
   const { PORT } = process.env
-  server.listen(PORT, err => {
+  server.listen(PORT, (err) => {
     if (err) {
       console.error(err)
       process.exit(1)
@@ -58,7 +57,7 @@ async function main() {
   })
 }
 
-main().catch(err => {
+main().catch((err) => {
   console.error(err)
   process.exit(1)
 })

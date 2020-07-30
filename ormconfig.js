@@ -1,4 +1,4 @@
-require('dotenv/config')
+require('./scripts/load-env')
 
 module.exports = [
   {
