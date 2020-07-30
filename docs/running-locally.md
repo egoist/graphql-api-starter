@@ -12,18 +12,10 @@ cp .env.example .env
 
 ```sql
 # Run psql
-> psql -d postgres
+> psql
 
-# Create a user called "dev" (default name)
-> create user dev;
-
-# Create a database (default name)
-> create database graphql_api_starter;
-
-# Switch to the created database
-> psql -d graphql_api_starter
-# Create UUID extension
-> create extension if not exists "uuid-ossp";
+# Create a database (you can change it in .env file)
+> create database mydb;
 ```
 
 ## Run server in dev mode
