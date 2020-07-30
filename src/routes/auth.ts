@@ -21,13 +21,13 @@ const verifyAuth = async (
   done: VerifyFunction,
 ) => {
   const userRepo = await getUserRepo()
-  if (!profile.emails || profile.emails.length === 0) {
+  const email = profile.emails && profile.emails[0]
+  if (!email) {
     return done(new Error(`Expect user to have a valid email address`))
   }
   const existing = await userRepo.findOne({
     where: {
-      providerId: profile.id,
-      provider: profile.provider,
+      email: email.value,
     },
   })
   if (existing) {
@@ -38,7 +38,7 @@ const verifyAuth = async (
   user.provider = profile.provider
   user.providerId = profile.id
   user.name = profile.displayName
-  user.email = profile.emails[0].value
+  user.email = email.value
   await userRepo.save(user)
   done(null, user)
 }
