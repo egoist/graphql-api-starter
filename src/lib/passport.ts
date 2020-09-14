@@ -53,7 +53,7 @@ if (enableGithub) {
       {
         clientID: process.env.GITHUB_CLIENT_ID!,
         clientSecret: process.env.GITHUB_CLIENT_SECRET!,
-        callbackURL: `${process.env.API_URL}/connect/github/callback`,
+        callbackURL: `/connect/github/callback`,
       },
       async (accessToken, refreshToken, profile, cb) => {
         try {
