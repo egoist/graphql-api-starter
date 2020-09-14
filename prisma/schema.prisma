@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id               String   @default(cuid()) @id
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+  name             String
+  email            String   @unique
+  avatar           String?
+  googleProviderId String?  @unique @map("google_provider_id")
+  githubProviderId String?  @unique @map("github_provider_id")
+  members          Member[]
+
+  @@map("users")
+}
+
+model Member {
+  id          String    @default(cuid()) @id
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  user        User      @relation(fields: [userId], references: [id])
+  workspace   Workspace @relation(fields: [workspaceId], references: [id])
+  role        String
+  userId      String    @map("user_id")
+  workspaceId String    @map("workspace_id")
+
+  @@map("members")
+}
+
+model Workspace {
+  id        String   @default(cuid()) @id
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  name      String
+  members   Member[]
+
+  @@map("workspaces")
+}

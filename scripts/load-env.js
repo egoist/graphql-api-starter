@@ -1,3 +1,7 @@
+/**
+ * Load .env to `process.env`
+ */
+
 const dotenv = require('dotenv')
 const dotenvExpand = require('dotenv-expand')
 

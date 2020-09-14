@@ -1,3 +1,4 @@
+import { prisma } from '@/lib/prisma'
 import {
   Resolver,
   Query,
@@ -9,8 +10,7 @@ import {
   Args,
 } from 'type-graphql'
 import { Context, GqlContext } from '../decorators/gql-context'
-import { requireAuth } from '../lib/require-auth'
-import { getUserRepo } from '../database/connection'
+import { requireAuth } from '../guards/require-auth'
 
 @ObjectType()
 class CurrentUser {
@@ -22,24 +22,23 @@ class CurrentUser {
 
   @Field()
   name: string
+
+  @Field({ nullable: true })
+  avatar?: string
 }
 
 @ArgsType()
 class UpdateProfileArgs {
   @Field()
   name: string
-
-  @Field()
-  email: string
 }
 
 @Resolver()
 export class CurrentUserResolver {
   @Query((returns) => CurrentUser)
   async currentUser(@GqlContext() context: Context) {
-    const { userId } = await requireAuth(context.request)
-    const userRepo = await getUserRepo()
-    return userRepo.findOne(userId)
+    const user = await requireAuth(context.request)
+    return user
   }
 
   @Mutation((returns) => CurrentUser)
@@ -47,11 +46,15 @@ export class CurrentUserResolver {
     @Args() args: UpdateProfileArgs,
     @GqlContext() ctx: Context,
   ) {
-    const { userId } = await requireAuth(ctx.request)
-    const userRepo = await getUserRepo()
-    const user = await userRepo.findOneOrFail(userId)
-    Object.assign(user, args)
-    await userRepo.save(user)
+    const user = await requireAuth(ctx.request)
+    await prisma.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        name: args.name,
+      },
+    })
     return user
   }
 }

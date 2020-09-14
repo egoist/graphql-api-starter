@@ -1,21 +1,6 @@
 # Authentication
 
-Authentication is based on Social Auth and JWT.
-
-## Configure OAuth
-
-General config:
-
-```bash
-# You only need to change this in production
-# e.g. https://api.my-app.com
-OAUTH_CALLBACK_URL=xxx
-
-# You only need to change this in production
-# We redirect success login to this URL with jwt token as URL hash `#token=xxx`
-# e.g. https://my-app.com/dashboard
-OAUTH_REDIRECT_URL=xxx
-```
+Authentication is based on Social Auth and Cookie.
 
 ### Enable Google Auth
 
@@ -43,7 +28,7 @@ import { requireAuth } from 'src/lib/require-auth'
 
 @Query(returns => SomeThing)
 async someQuery(@GqlContext() ctx: Context) {
-  const { userId } = await requireAuth(ctx.request)
+  const user = await requireAuth(ctx.request)
 }
 ```
 
