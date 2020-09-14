@@ -9,8 +9,8 @@
     "start": "node dist/main",
     "dev": "yarn build --watch",
     "build": "rollup -c rollup.server.js",
-    "migrate:save": "node scripts/with-env prisma migration save --exprimental",
-    "migrate:up": "node scripts/with-env prisma migration up --exprimental",
+    "migrate:save": "node scripts/with-env prisma migrate save --experimental",
+    "migrate:up": "node scripts/with-env prisma migrate up --experimental",
     "g:prisma": "prisma generate"
   },
   "husky": {
