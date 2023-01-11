@@ -28,7 +28,7 @@
     "@prisma/client": "2.6.2",
     "apollo-server-express": "2.17.0",
     "body-parser": "1.19.0",
-    "class-validator": "0.12.2",
+    "class-validator": "0.14.0",
     "cookie": "^0.4.1",
     "dotenv": "8.2.0",
     "dotenv-expand": "^5.1.0",
